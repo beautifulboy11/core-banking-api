@@ -23,6 +23,12 @@ API_URL=http://10.0.2.2:3000/v1/
 
 Use `10.0.2.2` from the Android emulator, `localhost` from an iOS simulator on the same machine, and the computer's LAN address from a physical device.
 
+## Docs
+
+Swagger UI is at http://localhost:3000/docs. The OpenAPI document is at http://localhost:3000/openapi.json.
+
+Call `POST /oauth/token`, then use **Authorize** with the `access_token` for routes that require a session.
+
 ## Reviewer identity
 
 Login accepts the configured email or phone with `grant_type=password`. OTP routes accept the configured OTP only when the body also carries that email or phone. Other identities receive `401` or `400` with `invalid_grant`.

@@ -8,4 +8,5 @@ const app = createApp({ config, store: createStore(config) });
 
 app.listen(config.port, '0.0.0.0', () => {
   console.log(`Reviewer banking API listening on ${config.port}`);
+  console.log(`Swagger UI at http://localhost:${config.port}/docs`);
 });

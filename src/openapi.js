@@ -84,7 +84,7 @@ export const openApiSpec = {
     title: 'Core Banking API',
     version: '1.0.0',
     description: [
-      'Reviewer stand-in for the Bank of Zambia staff banking mobile app.',
+      'Reviewer stand-in for the Core Banking staff banking mobile app.',
       'Every API response uses `{ success, message, payload }`. Failures also include `error`.',
       '',
       'The mobile app calls these routes under `/v1`. The same routes are mounted at `/`. `GET /health` is only on the server root.',
@@ -502,7 +502,7 @@ export const openApiSpec = {
             type: 'string',
             example: '0012062080023',
             description:
-              'The reviewer account number resolves as an internal Bank of Zambia account. Any other number resolves as the first fixture bank.',
+              'The reviewer account number resolves as an internal Core Banking account. Any other number resolves as the first fixture bank.',
           },
         },
       },
@@ -512,7 +512,7 @@ export const openApiSpec = {
           accountNumber: { type: 'string' },
           accountName: { type: 'string', example: 'Test User' },
           bankId: { type: 'string' },
-          bankName: { type: 'string', example: 'BANK OF ZAMBIA' },
+          bankName: { type: 'string', example: 'Core Banking' },
           branchId: { type: 'string' },
           branchName: { type: 'string', example: 'HEAD OFFICE' },
           internalAccount: { type: 'boolean' },

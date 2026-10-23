@@ -1,6 +1,6 @@
 # Core banking API
 
-Reviewer stand-in for the Bank of Zambia staff banking mobile app. It serves the same paths and `{ success, message, payload }` envelope the app already parses. It does not talk to the core banking host, and it must not be used as the production `API_URL`.
+Reviewer stand-in for the Core Banking API. It serves the same paths and `{ success, message, payload }` envelope the app already parses. It does not talk to the core banking host, and it must not be used as the production `API_URL`.
 
 Repository: https://github.com/beautifulboy11/core-banking-api
 

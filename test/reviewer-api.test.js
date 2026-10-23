@@ -127,4 +127,69 @@ test('reviewer API', async (t) => {
     });
     assert.equal(rejected.status, 400);
   });
+
+  await t.test('serves Swagger UI and the OpenAPI document', async () => {
+    const specResponse = await fetch(`${base}/openapi.json`);
+    assert.equal(specResponse.status, 200);
+    const spec = await specResponse.json();
+    assert.equal(spec.openapi, '3.0.3');
+    assert.deepEqual(spec.security, [{ bearerAuth: [] }]);
+    assert.deepEqual(spec.paths['/oauth/token'].post.security, []);
+    assert.equal(spec.paths['/account'].get.security, undefined);
+
+    const documented = {
+      '/health': ['get'],
+      '/oauth/token': ['post'],
+      '/oauth/logout': ['post'],
+      '/kyc/submit': ['post'],
+      '/kyc/onboarding/state': ['get'],
+      '/kyc/complete': ['post'],
+      '/verification/email': ['post'],
+      '/verification/email/verify': ['post'],
+      '/otp/generate': ['post'],
+      '/otp/generate-token': ['post'],
+      '/otp/verify': ['post'],
+      '/account': ['get'],
+      '/transactions': ['get'],
+      '/transactions/history': ['get'],
+      '/transactions/statement/pdf': ['get'],
+      '/banks': ['get'],
+      '/transfer-limits': ['get'],
+      '/transfer-limits/type-limits': ['get'],
+      '/transfers/guard-open': ['get'],
+      '/transfers/intra': ['post'],
+      '/transfers/inter': ['post'],
+      '/ddac/transfer': ['post'],
+      '/ddac/types': ['get'],
+      '/ddac/providers': ['get'],
+      '/beneficiaries': ['get', 'post'],
+      '/beneficiaries/{id}': ['put', 'delete'],
+      '/customer/lookup': ['post'],
+      '/devices/info': ['get'],
+      '/devices/{deviceId}/signing-key': ['get'],
+      '/devices/{deviceId}/signing-key/rotate': ['post'],
+      '/notifications': ['get'],
+      '/notifications/read-all': ['put'],
+      '/notifications/{id}/read': ['put'],
+      '/pin/status': ['get'],
+      '/pin/setup': ['post'],
+      '/pin/verify': ['post'],
+      '/pin/change': ['post'],
+      '/pin/forgot': ['post'],
+      '/pin/reset': ['post'],
+      '/service-requests': ['get', 'post'],
+      '/indemnity': ['get'],
+    };
+    for (const [path, methods] of Object.entries(documented)) {
+      assert.ok(spec.paths[path], path);
+      for (const method of methods) {
+        assert.equal(typeof spec.paths[path][method], 'object', `${method.toUpperCase()} ${path}`);
+      }
+    }
+
+    const docs = await fetch(`${base}/docs/`);
+    assert.equal(docs.status, 200);
+    assert.match(docs.headers.get('content-type'), /html/);
+    assert.match(await docs.text(), /swagger-ui/);
+  });
 });

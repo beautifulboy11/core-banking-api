@@ -79,7 +79,7 @@ export function createStore(config) {
         fromAccountNumber: '1234567890',
         toAccountNumber: config.accountNumber,
         beneficiaryName: 'Test User',
-        bankName: 'BANK OF ZAMBIA',
+        bankName: 'Core Banking',
         branchName: 'HEAD OFFICE',
         amount: 200.25,
         currency: 'ZMW',

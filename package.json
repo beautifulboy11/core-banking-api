@@ -2,7 +2,7 @@
   "name": "core-banking-api",
   "version": "1.0.0",
   "private": true,
-  "description": "Reviewer mock for the Bank of Zambia staff banking mobile app.",
+  "description": "Reviewer mock for the Core Banking staff banking mobile app.",
   "type": "module",
   "engines": {
     "node": ">=20"

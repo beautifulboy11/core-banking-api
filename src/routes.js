@@ -293,7 +293,7 @@ export function createRouter({ config, store }) {
         accountNumber,
         accountName: internal ? 'Test User' : 'Test Beneficiary 1',
         bankId: internal ? '' : banks[0].id,
-        bankName: internal ? 'BANK OF ZAMBIA' : banks[0].bankName,
+        bankName: internal ? 'Core Banking' : banks[0].bankName,
         branchId: internal ? '' : banks[0].branches[0].id,
         branchName: internal ? 'HEAD OFFICE' : banks[0].branches[0].branchName,
         internalAccount: internal,
